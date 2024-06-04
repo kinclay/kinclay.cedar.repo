@@ -1,7 +1,6 @@
 ---
 layout: default
 title: What is Cedar?
-![\[Illustrates the structure of a Cedar policy, including the scope.\]](images/favicon.ico)
 nav_order: 2
 ---
 
