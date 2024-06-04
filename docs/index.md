@@ -1,6 +1,7 @@
 ---
 layout: default
 title: What is Cedar?
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 nav_order: 2
 ---
 
