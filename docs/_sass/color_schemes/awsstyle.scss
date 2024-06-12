@@ -80,7 +80,7 @@ $header-height: 5rem !default;
 	  font-style: normal;
 	  //line-height: 2 !default;
 	  margin-top:0.1em;
-	  //margin-bottom:1em;
+	  margin-bottom:1em;
 }
 
 .main-content h2 {
@@ -102,9 +102,9 @@ $header-height: 5rem !default;
 	margin-top: 2em;
 }
 
-.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6, .main-content #toctitle {
-  position: static !important;
-}
+//.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6, .main-content #toctitle {
+  //position: static !important;
+//}
 
 .main-content ul>li::before {
   position: static !important;
