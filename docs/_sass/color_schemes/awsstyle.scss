@@ -102,9 +102,13 @@ $header-height: 5rem !default;
 	margin-top: 2em;
 }
 
+.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6, .main-content #toctitle {
+  position: static !important;
+}
 
-
-
+.main-content ul>li::before {
+  position: static !important;
+}
 
 blockquote .important {
 	background:rgba(255, 235, 130, 0.07);
