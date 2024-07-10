@@ -102,11 +102,6 @@ $header-height: 5rem !default;
 	margin-top: 2em;
 }
 
-#single .main-content ol,
-#single .main-content ul {
-    list-style-position: outside !important;
-}
-
 .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6, .main-content #toctitle {
   position: static !important;
 }
