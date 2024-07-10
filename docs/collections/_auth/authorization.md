@@ -110,7 +110,7 @@ Assume that the entities data includes the following details:
 
 The Cedar authorizer evaluates each of the four policies against this request.
 
-+ **P1** – Jane can perform any action on photo `vacation.jpg`.
++ *P1* – Jane can perform any action on photo `vacation.jpg`.
 
   ```cedar
   permit ( 
