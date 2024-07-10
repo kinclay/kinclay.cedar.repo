@@ -111,14 +111,6 @@ Assume that the entities data includes the following details:
 The Cedar authorizer evaluates each of the four policies against this request.
 
 + **P1** – Jane can perform any action on photo `vacation.jpg`.
-
-
-  This policy is **satisfied**.
-  + *Principal* in P1 is `principal == User::"jane"`, so after binding `principal` to `User::"jane"` (the *P* in the request), the expression evaluates to `true`.
-  + *Action* in P1 is simply `true` since there is no action constraint.
-  + *Resource* in P1 is `resource == Photo::"vacation.jpg"`, so after binding `resource` to `Photo::"vacation.jpg"` (the *R* in the request), the expression evaluates to `true`.
-  + *Cond(c)* is empty, so evaluates trivially to `true`.
-
 + **P2** – A member of group `kevinFriends` can view any of Kevin's photos when they are tagged `Holiday`
 
   ```cedar
