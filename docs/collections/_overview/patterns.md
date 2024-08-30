@@ -23,8 +23,14 @@ This topic introduces three Cedar design patterns:
 
 Each of these policy design patterns can use ABAC conditions to further limit access based on attributes of the principal or the resource.  
 
-Discretionary permissions are the simplest, so we will start by describing these.
-
+<details open markdown="block">
+  <summary>
+    Topics on this page
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## Discretionary permissions in Cedar {#discretionary}
 
@@ -50,6 +56,7 @@ permit (
   action == Action::"ServiceRequest",
   resource == Service::"Service-2851");
   ```
+
 While a discretionary policy always references an individual principal, its resource scope can refer to a group of resources. 
 
 For example:
@@ -59,8 +66,6 @@ permit (
   action == Action::"ServiceRequest",
   resource in ServiceGroup::"ServiceGroup-AA44");
   ```
-  
-
 
 If the application creates discretionary permissions at run time, the best practice is to use templates to define the shape of the policy, and have the application create a template-linked policy by providing IDs for the principal and the resource. 
 
@@ -76,7 +81,7 @@ permit (
     resource.status == "OPEN" 
  } ;
   ```
-The discretionary pattern works well for granting ad-hoc permissions from within an application, as in the ticket sharing example.  
+The discretionary pattern works well for granting ad-hoc permissions from within an application, as in the ticket sharing example.
 
 The discretionary pattern can scale to grant a single set of permissions to multiple individual users. Using templates enables policy managers to add additional conditions to these policies, by modifying the template. 
 
@@ -84,7 +89,7 @@ However, many organizations prefer to define a group or role that has a set of p
 
 
 ## Membership permissions in Cedar {#membership} 
-This pattern uses Cedar policies to describe what members of a group are permitted to do. A user is granted these permissions by making them a member of the group.  Group membership is stored and managed independently of the policies, for example in an Identity Provider. 
+This pattern uses Cedar policies to describe what members of a group are permitted to do. A user is granted these permissions by making them a member of the group. Group membership is stored and managed independently of the policies, for example in an Identity Provider. 
 
 Membership permissions are commonly used to implement Role Based Access Control (RBAC). For example, we can write a Cedar policy stating that members of the ContractManager role are permitted to review and execute contracts. 
 
@@ -96,11 +101,11 @@ permit (
 ); 
 ```
 
-When `Employee ::“Alice”` is promoted and made a member of `Role::"ContractManager"`, this policy permits her to review and execute contracts. The policy is not specific to Alice. It applies to all members of the role.  
+When `Employee ::“Alice”` is promoted and made a member of `Role::"ContractManager"`, this policy permits her to review and execute contracts. The policy is not specific to Alice. It applies to all members of the role.
 
 Note that `Role` is not a reserved term in Cedar. In the previous example, `Role` is an entity type, defined in the schema, such that entities of type `Employee` can be members of entities of type `Role`. `ContractManager` is an entity of type `Role`.
 
-Membership permissions can also be used to define permissions for groups of users, such as teams and departments. For example, the following policy states that any principal in the Finance team can review and approve budgets.   
+Membership permissions can also be used to define permissions for groups of users, such as teams and departments. For example, the following policy states that any principal in the Finance team can review and approve budgets.
 
 ```cedar
 permit ( 
@@ -111,7 +116,7 @@ permit (
 ```
 When Bob joins the Finance team, we model this by adding `Employee::"Bob"` to the group representing the Finance team. This membership is recorded outside of the policy store, for example in an Identity Provider. The policy now applies to Bob and he can review and approve budgets.
 
-###Adding constraints using attribute-based conditions {#membership-constraints}
+### Adding constraints using attribute-based conditions {#membership-constraints}
 
 The previous example policies permit any principal in the scoped group to take the scoped actions on any resource. In some cases we may want to place constraints on the resources that members of the group can act on. For example, the Finance team may only be able to approve budgets below $25K. We model this constraint by adding a fixed attribute-based condition to the finance group membership policy. 
 ```cedar
@@ -125,7 +130,7 @@ permit (
 ```
 
 
-This policy states that any principal in the Finance team can review and approve budgets with a value less that 25000.  Note that the policy references an attribute called `value` on the `Budget` entity.
+This policy states that any principal in the Finance team can review and approve budgets with a value less that 25000. Note that the policy references an attribute called `value` on the `Budget` entity.
 
 With the previous policy, the limit applies to all members of the Finance Team. The attribute condition is independent of the principal. However, in some cases, different members of the team may have different budget approval limits. One approach to modelling this would be to use the discretionary design pattern. With this approach, the group level policy in the previous example would be replaced by individual policies, one for each team member. Another alternate approach would be to store each team members limit as a principal attribute, and then reference that within a condition of the policy.
 ```cedar
@@ -137,11 +142,11 @@ permit (
  resource.value <= principal.budgetApprovalLimit
 }; 
 ```
-###Using attribute conditions to prevent role explosion {#membership-prevent-explosion}
+### Using attribute conditions to prevent role explosion {#membership-prevent-explosion}
 
-In some cases we need to assign a role on a specific set of resources. For example, Alice may be assigned the role of Compliance Officer for the countries of Canada and the United States. This allows her to sign off audits at manufacturing sites in these two countries.    
+In some cases we need to assign a role on a specific set of resources. For example, Alice may be assigned the role of Compliance Officer for the countries of Canada and the United States. This allows her to sign off audits at manufacturing sites in these two countries.
 
-One approach would be to use the discretionary design pattern and create one or more country-specific template-linked policies for each principal assigned the role. This can result in a very large number of policies to manage.  
+One approach would be to use the discretionary design pattern and create one or more country-specific template-linked policies for each principal assigned the role. This can result in a very large number of policies to manage.
 
 Another approach would be to create a compliance officer role for each country. In Cedar terms `Employee::"Alice"` would be a member of `Role::"ComplianceOfficerCanada"` and `Role::"ComplianceOfficerUSA"`. 
 
@@ -163,7 +168,7 @@ permit (
 
 However, this approach may not scale well, leading to an explosion in the number of roles the organization has to manage if if they operate in many countries. 
 
-A third approach is to create a role-associated attribute. This is an attribute on the principal that is specific to the role, and captures the constraint for the role assignment. The value of this attribute is set at time of assignment. For the sake of clarity, it’s best to name the attribute after the role. In the previous example we might define an attribute for the employee entity called 'complianceOfficerCountries', which contains the set of countries in which the employee has jurisdiction as a compliance officer.  We can now write a single policy, constrained by this attribute.
+A third approach is to create a role-associated attribute. This is an attribute on the principal that is specific to the role, and captures the constraint for the role assignment. The value of this attribute is set at time of assignment. For the sake of clarity, it’s best to name the attribute after the role. In the previous example we might define an attribute for the employee entity called 'complianceOfficerCountries', which contains the set of countries in which the employee has jurisdiction as a compliance officer. We can now write a single policy, constrained by this attribute.
 ```cedar
 permit ( 
   principal in Role::"ComplianceOfficer", 
@@ -177,7 +182,7 @@ when {
 
 If Alice’s remit as a compliance officer is extended to include Mexico, then we add this country to Alice’s set of countries as defined by `complianceOfficerCountries`. This pattern enables the rule to be expressed as a single policy, however it does require the maintenance of an additional authorization attribute outside of the policy store. 
 
-#Relationship permissions in Cedar {#relatipmship}
+## Relationship permissions in Cedar {#relatipmship}
 
 In contrast to membership permissions, relationship permissions are granted based on a relationship between the principal and a resource or group of resources. The relationship itself is stored and managed outside of the Cedar policy store. We can use Cedar to write policies that describe what actions a resource is permitted to take, based on that relationship. This is called Relationship Based Access Control (ReBAC).
 
@@ -262,7 +267,7 @@ unless {
 };
 ```
 
-##Mixing different permission types {#mixing-permissiona}
+## Mixing different permission types {#mixing-permissiona}
 
 Individual policies should follow either the [membership](#membership), [relationship](#relationship) or [discretionary](#discretionary) design pattern. Single policies that combine these patterns are at best confusing and at worst error prone. However, you can mix policies of different types in the same policy store. One of the strengths of Cedar is it allows you to do this without compromising on readability, performance or correctness. 
 
