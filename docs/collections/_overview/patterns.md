@@ -9,11 +9,11 @@ nav_order: 4
 
 Once you understand the basics of the Cedar policy language, you can start to design policies for your application’s permissions model. The most commonly used terms in authorization are:
 
-+ Role Based Access Control (RBAC) - Permissions are based on role assignments
-+ Attribute Based Access Control (ABAC) - Permissions are based on attribute values of the user and/or the resources
-+ Relationship Based Access Control (ReBAC) - Permissions are based on a relationship between the user and the resource. These terms can be a helpful starting point, for understanding different permissions models, but can introduce some confusing overlaps. For example, Owner can be seen as a role, but also a relationship between a user and a document; and that relationship may be stored as an attribute of the document.  
++ *Role Based Access Control (RBAC)* - Permissions are based on role assignments
++ *Attribute Based Access Control (ABAC)* - Permissions are based on attribute values of the user and/or the resources
++ *Relationship Based Access Control (ReBAC)* - Permissions are based on a relationship between the user and the resource. These terms can be a helpful starting point, for understanding different permissions models, but can introduce some confusing overlaps. For example, Owner can be seen as a role, but also a relationship between a user and a document; and that relationship may be stored as an attribute of the document.  
 
-This topic introduces three Cedar design patterns:
+This topic introduces the three following Cedar design patterns:
 
 1. Membership permissions are derived from the principal’s membership in one or more groups. Access is granted by making a principal a member of a group. This pattern is commonly used to implement Role Based Access Control (RBAC), where the role is represented as a group.  Group membership is stored and managed independently of the policies, for example in an Identity Provider. Management of group membership often happens without reference to particular sets of resources. For example, an employee is assigned the role of compliance officer, thereby enabling her to sign off all audits. 
 
