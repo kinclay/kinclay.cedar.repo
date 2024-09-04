@@ -230,7 +230,6 @@ unless {
   principal has isTerminated && principal.isTerminated
 };  
 
-
 // Viewer policy, constrained for private resources
 permit (
   principal is User,
@@ -275,7 +274,6 @@ permit (
   principal in Role::"Admin",
   action in Action::"adminActions",
   resource is List);
-  
   
 // public access policy - constrained membership 
 permit ( 
