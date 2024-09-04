@@ -85,7 +85,7 @@ The discretionary pattern works well for granting ad-hoc permissions from within
 
 The discretionary pattern can scale to grant a single set of permissions to multiple individual users. Using templates enables policy managers to add additional conditions to these policies, by modifying the template. 
 
-However, many organizations prefer to define a group or role that has a set of permissions. Users assigned to the group or role then inherit these permissions. For more information about doing this, see [Membership permissions in Cedar](#membership).
+However, many organizations prefer to define a group or role that has a set of permissions. Users assigned to the group or role then inherit these permissions. For more information about doing this, see [Membership permissions in Cedar](#membership).\
 [Top](#toc)
 ## Membership permissions in Cedar {#membership} 
 This pattern uses Cedar policies to describe what members of a group are permitted to do. A user is granted these permissions by making them a member of the group. Group membership is stored and managed independently of the policies, for example in an Identity Provider. 
