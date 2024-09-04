@@ -260,7 +260,6 @@ unless {
   principal has isTerminated && principal.isTerminated
 };
 ```
-\
 [Back to topic list](#toc)
 
 ## Mixing different permission types {#mixing-permissiona}
@@ -292,5 +291,4 @@ permit (
   action in Action::"housekeepingActions",
   resource is List);
 ```
-\
 [Back to topic list](#toc)
