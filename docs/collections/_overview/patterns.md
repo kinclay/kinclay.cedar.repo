@@ -23,7 +23,7 @@ This topic introduces the three following Cedar design patterns:
 
 Each of these policy design patterns can use ABAC conditions to further limit access based on attributes of the principal or the resource.  
 
-<details open markdown="block">{#toc}
+<details open markdown="block" id="toc">
   <summary>
     Topics on this page
   </summary>
