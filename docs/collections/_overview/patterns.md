@@ -260,6 +260,8 @@ unless {
   principal has isTerminated && principal.isTerminated
 };
 ```
+\
+[Back to topic list](#toc)
 
 ## Mixing different permission types {#mixing-permissiona}
 
