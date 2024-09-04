@@ -39,7 +39,6 @@ Discretionary permissions are granted on an ad hoc basis at the discretion of an
 One use of discretionary permissions is for machine to machine authorization, where a security admin is defining a set of access rules outlning which service can call which other service. 
 
 For example:
-
 ```cedar
 permit (
   principal == Service::"Service-1343",
@@ -72,7 +71,6 @@ If the application creates discretionary permissions at run time, the best pract
 For example, a ticket management system can allow a service agent to share access to an open ticket with another user. To do this in Cedar, create a policy template as shown below. Each time an agent shares access to a ticket, the application creates a template-linked policy, populating the ID of the User with whom the ticket is being shared, and the ID of the ticket itself.
 ```cedar
 // Template for ticket sharing
-
 permit (
   principal == ?principal,
   action in Action::"Shared_TicketAccess",
@@ -88,11 +86,11 @@ The discretionary pattern can scale to grant a single set of permissions to mult
 However, many organizations prefer to define a group or role that has a set of permissions. Users assigned to the group or role then inherit these permissions. For more information about doing this, see [Membership permissions in Cedar](#membership).\
 \
 [Back to topic list](#toc)
+
 ## Membership permissions in Cedar {#membership} 
 This pattern uses Cedar policies to describe what members of a group are permitted to do. A user is granted these permissions by making them a member of the group. Group membership is stored and managed independently of the policies, for example in an Identity Provider. 
 
 Membership permissions are commonly used to implement Role Based Access Control (RBAC). For example, we can write a Cedar policy stating that members of the ContractManager role are permitted to review and execute contracts. 
-
 ```cedar
 permit ( 
   principal in Role::"ContractManager", 
@@ -106,7 +104,6 @@ When `Employee ::“Alice”` is promoted and made a member of `Role::"ContractM
 Note that `Role` is not a reserved term in Cedar. In the previous example, `Role` is an entity type, defined in the schema, such that entities of type `Employee` can be members of entities of type `Role`. `ContractManager` is an entity of type `Role`.
 
 Membership permissions can also be used to define permissions for groups of users, such as teams and departments. For example, the following policy states that any principal in the Finance team can review and approve budgets.
-
 ```cedar
 permit ( 
   principal in Team::"Finance", 
@@ -158,7 +155,6 @@ permit (
    resource in AuditGroup::"AUDITS_CANADA"
 ) ;
 
-
 permit ( 
   principal in Role::"ComplianceOfficerUSA", 
   action in [Action::"approveAudit"],
@@ -180,7 +176,9 @@ when {
 }; 
 ```
 
-If Alice’s remit as a compliance officer is extended to include Mexico, then we add this country to Alice’s set of countries as defined by `complianceOfficerCountries`. This pattern enables the rule to be expressed as a single policy, however it does require the maintenance of an additional authorization attribute outside of the policy store. 
+If Alice’s remit as a compliance officer is extended to include Mexico, then we add this country to Alice’s set of countries as defined by `complianceOfficerCountries`. This pattern enables the rule to be expressed as a single policy, however it does require the maintenance of an additional authorization attribute outside of the policy store.\
+\
+[Back to topic list](#toc)
 
 ## Relationship permissions in Cedar {#relatipmship}
 
@@ -245,15 +243,12 @@ unless {
   resource has isPrivate and resource.isPrivate 
 };
 ```
-      
-
 
 In examples we’ve looked at so far, the relationship (**owner**, **contributor**, **viewer**) is between the resource and an individual user. In some cases the relationship might be established between the resource and a group of principals. 
 
 For example, TinyTodo lets an administrator set up teams. List owners can then make those teams contributors to lists. This can be modeled in Cedar by adding a second attribute for the contributor relationship, which holds the set of user groups with this relationship. The contributors policy can then be extended as shown in the following example:
 ```cedar
 // Contributors policy for Users and user groups, disallowed for terminated principals
-
 permit (
   principal is User,
   action in Action::"contributorActions",
@@ -297,3 +292,5 @@ permit (
   action in Action::"housekeepingActions",
   resource is List);
 ```
+\
+[Back to topic list](#toc)
