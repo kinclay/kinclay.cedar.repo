@@ -147,7 +147,7 @@ One approach would be to use the discretionary design pattern and create country
 
 Another approach would be to create a compliance officer role for each country. In Cedar terms `Employee::"Alice"` would be a member of `Role::"ComplianceOfficerCanada"` and `Role::"ComplianceOfficerUSA"`. 
 
-If we group audits by country then we can create a membership policy for each country as show in the following:
+If we group audits by country then we can create a membership policy for each country as shown in the following:
 ```cedar
 permit ( 
   principal in Role::"ComplianceOfficerCanada", 
