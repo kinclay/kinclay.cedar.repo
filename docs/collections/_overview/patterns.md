@@ -11,7 +11,9 @@ Once you understand the basics of the Cedar policy language, you can start to de
 
 + *Role Based Access Control (RBAC)* - Permissions are based on role assignments
 + *Attribute Based Access Control (ABAC)* - Permissions are based on attribute values of the user and/or the resources
-+ *Relationship Based Access Control (ReBAC)* - Permissions are based on a relationship between the user and the resource. These terms can be a helpful starting point, for understanding different permissions models, but can introduce some confusing overlaps. For example, Owner can be seen as a role, but also a relationship between a user and a document; and that relationship may be stored as an attribute of the document.  
++ *Relationship Based Access Control (ReBAC)* - Permissions are based on a relationship between the user and the resource.
+
+These terms can be a helpful starting point, for understanding different permissions models, but can introduce some confusing overlaps. For example, Owner can be seen as a role, but also a relationship between a user and a document; and that relationship may be stored as an attribute of the document.  
 
 This topic introduces three Cedar design patterns:
 
