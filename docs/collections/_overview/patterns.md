@@ -145,7 +145,7 @@ permit (
 
 In some cases we need to assign a role on a specific set of resources. For example, Alice may be assigned the role of Compliance Officer for the countries of Canada and the United States. This allows her to sign off audits at manufacturing sites in these two countries.
 
-One approach would be to use the discretionary design pattern and create country-specific policy templates for `Compliance Officers`. In Alice's case, we would then created two template-linked policies, one usng the `Canada` template and the other using the `United States` template. 
+One approach would be to use the discretionary design pattern and create country-specific policy templates for `Compliance Officers`. In Alice's case, we would then create two template-linked policies, one using the `Canada` template and the other using the `United States` template. 
 
 Another approach would be to create a compliance officer role for each country. In Cedar terms `Employee::"Alice"` would be a member of `Role::"ComplianceOfficerCanada"` and `Role::"ComplianceOfficerUSA"`. 
 
