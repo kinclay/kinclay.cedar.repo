@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Separate principals & containers
-nav_order: 4
+nav_order: 5
 ---
 
 # Best practice: Separate the principals from the resource containers
