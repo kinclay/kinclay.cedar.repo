@@ -9,7 +9,7 @@ nav_order: 8
 
 The following Verified Permissions policy examples are based on the schema defined for the hypothetical application called PhotoFlash described in the [Example schema section](#example-schama).
 
-##Allows access to individual entities {#allow-acces-indivuals}
+## Allows access to individual entities {#allow-acces-indivuals}
 This following example shows how you might create a policy that allows the user `alice` to view the photo `VacationPhoto94.jpg`.
 
 ```Cedar
