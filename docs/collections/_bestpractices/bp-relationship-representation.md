@@ -9,6 +9,15 @@ nav_order: 4
 
 There are two main ways to express relationships between resources. When to use one or the other depends on whether or not the relation is already stored in your application database and used for other reasons such as compliance. If it is, take the [attribute-based approach](#attribute-based). If not, then take the [template-based approach](#template-based).
 
+<details open markdown="block" id="toc">
+  <summary>
+    Topics on this page
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## Attribute-based relationships {#attribute-based}
 
 Attributes can be used as an *input* to the authorization decision to represent a relationship between a principal and one or more resources.
