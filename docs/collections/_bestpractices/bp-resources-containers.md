@@ -8,7 +8,7 @@ nav_order: 1
 
 {: .no_toc }
 
-When you design an authorization model, every action must be associated with a particular resource. With an action such as viewFile, the resource that you can apply it to is intuitive: an individual file, or perhaps a collection of files within a folder. However, an operation such as createFile is less intuitive. When modeling the capability to create a file, what resource does it apply to? It can't be the file itself, because the file doesn’t exist yet.
+When you design an authorization model, every action must be associated with a particular resource. With an action such as `viewFile`, the resource that you can apply it to is intuitive: an individual file, or perhaps a collection of files within a folder. However, an operation such as `createFile` is less intuitive. When modeling the capability to create a file, what resource does it apply to? It can't be the file itself, because the file doesn’t exist yet.
 
 This is an example of the generalized problem of resource creation. Resource creation is a bootstrapping problem. There must be a way for something to have permission to create resources even when no resources exist yet. The solution is to recognize that every resource must exist within some container, and it is the container itself that acts as the anchor point for permissions. For example, if a folder already exists in the system, the ability to create a file can be modeled as a permission on that folder, since that is the location where permissions are necessary to instantiate the new resource.
 
