@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Populate the policy scope
-nav_order: 6
+nav_order: 7
 ---
 
 # Best practice: When possible, populate the policy scope
