@@ -20,7 +20,7 @@ permit(
 );
 ```
 
-##Allows access to groups of entities {#allow-acces-groups}
+## Allows access to groups of entities {#allow-acces-groups}
 This following example shows how you might create a policy that allows anyone in the `alice_friends` group to view the photo `VacationPhoto94.jpg`.
 
 ```Cedar
@@ -66,7 +66,7 @@ permit(
   resource in Album::"alice_vacation"
 )
 ```
-##Allows access for any entity {#allow-any}
+## Allows access for any entity {#allow-any}
 This following example shows how you might create a policy that allows any authenticated principal to view the album `alice_vacation`.
 ```Cedar
 permit(
@@ -91,7 +91,7 @@ permit(
   resource in Album::"jane_vacation"
 );
 ```
-##Allows access for attributes of an entity (ABAC) {#allow-abac}
+## Allows access for attributes of an entity (ABAC) {#allow-abac}
 Attribute-based access control (ABAC) is an authorization strategy that defines permissions based on attributes. Verified Permissions allows attributes to be attached to principals, actions, and resources. These attributes can then be referenced within the `when` and `unless` clauses of policies that evaluate the attributes of the principals, actions, and resources that make up the context of the request.
 
 This following example shows how you might create a policy that allows any principal in the `HardwareEngineering` department with a job level of greater than or equal to 5 to view and list photos in the album `device_prototypes`.
