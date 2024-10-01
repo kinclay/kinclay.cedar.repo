@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Representing relationships
-nav_order: 1
+nav_order: 4
 ---
 
-# Best practice: Using attributes or templates to represent relationships
+# Best practice: Use attributes or templates to represent relationships
 {: .no_toc }
 
 There are two main ways to express relationships between resources. When to use one or the other depends on whether or not the relation is already stored in your application database and used for other reasons such as compliance. If it is, take the [attribute-based approach](#attribute-based). If not, then take the [template-based approach](#template-based).
