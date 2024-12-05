@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Best Practices overview
-nav_order: 1
+nav_order: 0
 ---
 
 # Cedar best practices
