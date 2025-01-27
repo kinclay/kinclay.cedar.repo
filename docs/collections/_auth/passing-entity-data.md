@@ -31,7 +31,7 @@ when {
     resource.Owner == User::“4532434” // Owner is a pointer to another entity
 }; 
 ```
-They can however be string literals containing the IDs other entities, as in the following example:
+They can however be string literals containing the IDs other entities, as in the following example.
 ```cedar
 // This policy is ok
 forbid ( 
@@ -43,7 +43,7 @@ when {
 };
 ```
 ### Don't includes pointers to other entities in context
-The context can’t contain attributes that point to entities. For example, you cannot circumvent one [best practice](#pointers-entities-attributes)  by defining a context attribute called **ResourceOwner** and setting this to point to the **User** entity, as in the following example:
+The context can’t contain attributes that point to entities. For example, you cannot circumvent one [best practice](#pointers-entities-attributes)  by defining a context attribute called **ResourceOwner** and setting this to point to the **User** entity, as in the following example.
 ```cedar
 // This policy breaks the best practice
 forbid ( 
@@ -55,7 +55,7 @@ when {
 };
 ```
 ### Don't include entity literals in policies
-There can be no entity literals in the body (conditions) of the policy. An entity literal is one that is not described by the principal, action, resource or context in the authorization request. For example, `Album::”Italy2022` is an entity literal in the following policy:
+There can be no entity literals in the body (conditions) of the policy. An entity literal is one that is not described by the principal, action, resource or context in the authorization request. For example, `Album::”Italy2022` is an entity literal in the following policy and breaks this best practice.
 ```cedar
 // This policy breaks the best practice
 forbid ( 
