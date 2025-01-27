@@ -18,7 +18,7 @@ There are three operational models for creating policies that can mitigate this 
 + **Loosely coupled, constrained** - The application developer passes the immediate entity data set for the resource and the principal, and the operator works within a defined set of constraints. That includes *all* the attributes of the resource and the principal and the complete group membership chain for these entities; (i.e., the full set of groups that the principal/resource are members of, all the groups that those groups are members of, all the groups that those groups are members of, etc.) This operational model is the recommended best practice for operational policies.
 
 ## Best practices for operators {#best-practices-operators}
-If an application is developed using the **Loosely coupled, constrained** operational model and the operator abides by the following best practices, they can confidently define policies without consulting the application developer:
+If an application is developed using the **Loosely coupled, constrained** operational model and the operator abides by the following best practices, they can confidently define policies without consulting the application develope.
 ### Don't includes pointers to other entities in attributes (#pointers-entities-attributes}
 Attributes of resources and principals can't be pointers to other entities. The following example policy breaks this best practice, because the resource attribute **Owner** points to another entity. 
 ```cedar
